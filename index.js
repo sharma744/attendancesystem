@@ -3,11 +3,27 @@ import mongoose from "mongoose";
 import userRouter from "../serverside/routers/userRoutes.js"
 import adminrouter from "../serverside/routers/admindashboard.js"
 import bcrypt from "bcrypt"
+import cors from "cors"
 import express, { urlencoded } from "express";
 // import {userRoutes} from "./routers/userRoutes.js"
 import auth from "./routers/validation.js"
 let app=express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://diwalihaat.onrender.com"
+  // add your real website address when you deploy, for example:
+  // "https://diwalihaat.com",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 mongoose.connect(process.env.MONGO_URL);

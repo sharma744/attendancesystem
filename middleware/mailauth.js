@@ -25,7 +25,7 @@ const mailauth = async (req, res) => {
         });
 
         await transport.sendMail({
-            from: "aatyu <aayusharma9711@gmail.com>",
+            from: "diwalihaat<milaap2k26@gmail.com>",
             to: username,
             subject: "OTP Verification",
             text: `${otp}`
